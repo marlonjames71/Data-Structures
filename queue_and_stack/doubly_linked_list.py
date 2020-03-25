@@ -3,27 +3,26 @@ as well as its next node in the List."""
 
 
 class ListNode:
-    def __init__(self, value, prev=None, next=None, key=None):
+    def __init__(self, value, prev=None, next=None):
         self.value = value
         self.prev = prev
         self.next = next
-        self.key = key
 
     """Wrap the given value in a ListNode and insert it
     after this node. Note that this node could already
     have a next node it is point to."""
-    def insert_after(self, value, key=None):
+    def insert_after(self, value):
         current_next = self.next
-        self.next = ListNode(value, self, current_next, key)
+        self.next = ListNode(value, self, current_next)
         if current_next:
             current_next.prev = self.next
 
     """Wrap the given value in a ListNode and insert it
     before this node. Note that this node could already
     have a previous node it is point to."""
-    def insert_before(self, value, key=None):
+    def insert_before(self, value):
         current_prev = self.prev
-        self.prev = ListNode(value, current_prev, self, key)
+        self.prev = ListNode(value, current_prev, self)
         if current_prev:
             current_prev.next = self.prev
 
@@ -48,8 +47,6 @@ class DoublyLinkedList:
 
     def __len__(self):
         return self.length
-    
-    
 
     """Wraps the given value in a ListNode and inserts it 
     as the new head of the list. Don't forget to handle 
@@ -124,11 +121,11 @@ class DoublyLinkedList:
             self.tail = None
         # If head
         elif node is self.head:
-            self.head = self.head.next # Can use head instead of node - Same thing here
+            self.head = self.node.next # Can use head instead of node - Same thing here
             node.delete()
         # if tail
         elif node is self.tail:
-            self.tail = self.tail.prev # Can use tail instead of node - Same thing here
+            self.tail = self.node.prev # Can use tail instead of node - Same thing here
             node.delete()
         # if regular node
         node.delete()
