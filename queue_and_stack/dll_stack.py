@@ -5,14 +5,15 @@ from doubly_linked_list import DoublyLinkedList
 class Stack:
     def __init__(self):
         self.size = 0
-        # Why is our DLL a good choice to store our elements?
-        # self.storage = ?
+        self.linkedList = DoublyLinkedList()
 
     def push(self, value):
-        pass
+        self.size += 1
+        self.linkedList.add_to_tail(value)
 
     def pop(self):
-        pass
+        self.size -= 1
+        self.linkedList.remove_from_tail()
 
     def len(self):
-        pass
+        return self.size
